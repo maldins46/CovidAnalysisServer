@@ -19,8 +19,7 @@ mongoose.connect(
 
 var indexRouter = require('./routes/index');
 var subscribeRouter = require('./routes/subscribe');
-var triggerCovidRouter = require('./routes/trigger-covid');
-var triggerVaccinesRouter = require('./routes/trigger-vaccines');
+var triggerRouter = require('./routes/trigger');
 
 var app = express();
 
@@ -36,8 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/subscribe', subscribeRouter);
-app.use('/trigger-covid', triggerCovidRouter);
-app.use('/trigger-vaccines', triggerVaccinesRouter);
+app.use('/trigger', triggerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
