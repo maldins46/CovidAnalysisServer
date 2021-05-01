@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const webpush = require('web-push');
 const Subscription = require('../models/subscription')
-const config = require('../config.json')
 
 const getNotification = (type) => {
   switch (type) {
@@ -43,8 +42,8 @@ router.get('/:id', async (req, res, next) => {
 
   webpush.setVapidDetails(
     'https://maldins46.github.io/CovidAnalysis',
-    config.publicKey,
-    config.privateKey
+    process.env.PUBLIC_KEY,
+    process.env.PRIVATE_KEY
   );
 
   const sendNotsPromises = subscribers.map((subscriber) =>

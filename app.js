@@ -4,11 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
-const config = require('config.json')
+require('dotenv').config()
 
 // initialize mongo connection
 mongoose.connect(
-  config.mongoUrl,
+  process.env.MONGO_URL,
   {
     useNewUrlParser: true,
     useFindAndModify: false,
