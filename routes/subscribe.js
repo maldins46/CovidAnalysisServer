@@ -1,18 +1,10 @@
 var express = require('express');
 var router = express.Router();
-const Subscription = require('../models/subscription')
+const Subscription = require('../models/subscription').model;
 
 /* POST subscribe to notifications. */
 router.post('/', async (req, res, next) => {
-
   const subscriber = new Subscription(req.body);
-
-  // necessary?
-  // const error = subscriber.validateSync();
-  // if (error) {
-  //   res.status(400).send({message: 'Subscription not well formed.'});
-  //   return;
-  // }
 
   try {
     await subscriber.save();

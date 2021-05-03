@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const webpush = require('web-push');
-const Subscription = require('../models/subscription')
+const Subscription = require('../models/subscription').model;
 
 const getNotification = (type) => {
   switch (type) {
@@ -46,8 +46,8 @@ router.get('/:id', async (req, res, next) => {
     process.env.PRIVATE_KEY
   );
 
-  const sendNotsPromises = subscribers.map((subscriber) =>
-    webpush.sendNotification(subscriber, JSON.stringify(notification))
+  const sendNotsPromises = subscribers.map((sub) =>
+    webpush.sendNotification(sub, JSON.stringify(notification))
   )
 
   try {
