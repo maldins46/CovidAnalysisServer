@@ -35,7 +35,7 @@ router.get('/:id', async (req, res, next) => {
   try {
     subscribers = await Subscription.find();
   } catch (e) {
-    console.error("Unable to fetch subscribers.", e);
+    console.log("Error fetching subscribers.");
     res.status(500).send({message: 'Error fetching subscribers.'});
     return;
   }
@@ -52,9 +52,9 @@ router.get('/:id', async (req, res, next) => {
 
   try {
     await Promise.all(sendNotsPromises);
-    res.send({message: 'Notification sent successfully to all subscribers!'});
+    res.send({ message: `Notification for ${ req.query.id } sent successfully to all subscribers!` });
   } catch (e) {
-    console.error('Unable to send messages to all subscribers.', e);
+    console.log('Unable to send messages to all subscribers.');
     res.status(500).send({message: 'Unable to send messages to all subscribers.'})
   }
 });

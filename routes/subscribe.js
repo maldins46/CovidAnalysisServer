@@ -11,7 +11,7 @@ router.post('/', async (req, res, next) => {
     res.send('Notifications subscribed!');
 
   } catch (e) {
-    console.error('Cannot insert subscription.', e);
+    console.log('Cannot insert subscription!');
     res.status(400).send({message: 'Cannot insert the subscription.'});
   }
 });
