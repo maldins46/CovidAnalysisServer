@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 module.exports.connect = async () => {
-  const uri = process.env.MONGO_URL;
+  const uri = encodeURI(process.env.MONGO_URL);
   const mongooseOpts = {
     useNewUrlParser: true,
     useFindAndModify: false,
