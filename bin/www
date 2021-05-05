@@ -3,19 +3,18 @@
 /**
  * Module dependencies.
  */
-
-var app = require('../app');
-var debug = require('debug')('covidanalysisserver:server');
+const app = require('../app')
+const debug = require('debug')('covidanalysisserver:server')
 var http = require('http');
-var db = require('../helpers/db');
-var testDb = require('../tests/dbHandler')
 
 /**
  * Connect to the mongo database.
  */
 if (process.env.ENV === 'production') {
+  const db = require('../helpers/db');
   db.connect();
 } else {
+  const testDb = require('../tests/dbHandler')
   testDb.connect();
 }
 
