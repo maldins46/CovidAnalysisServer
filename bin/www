@@ -7,9 +7,17 @@
 var app = require('../app');
 var debug = require('debug')('covidanalysisserver:server');
 var http = require('http');
-var dbHelper = require('../helpers/db');
+var db = require('../helpers/db');
+var testDb = require('../tests/dbHandler')
 
-dbHelper.connect();
+/**
+ * Connect to the mongo database.
+ */
+if (process.env.ENV === 'production') {
+  db.connect();
+} else {
+  testDb.connect();
+}
 
 /**
  * Get port from environment and store in Express.

@@ -1,5 +1,5 @@
 const request = require('supertest')
-const dbHandler = require('../helpers/db');
+const dbHandler = require('./dbHandler');
 const mockSub = require('../models/subscription').mockSub;
 const Subscription = require('../models/subscription').model;
 const app = require('../app')
