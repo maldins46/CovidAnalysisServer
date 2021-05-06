@@ -1,12 +1,8 @@
 const request = require('supertest')
 const dbHandler = require('./dbHandler');
 const app = require('../app')
-const mockSub = require('../models/subscription').mockSub;
-const Subscription = require('../models/subscription').model;
 
 beforeAll(async () => await dbHandler.connect());
-
-//beforeEach(async () => await new Subscription(mockSub).save());
 
 afterEach(async () => await dbHandler.clearDatabase());
 
@@ -17,6 +13,7 @@ describe('Trigger Endpoint', () => {
     it('Should respond 200 if all messages are sent correctly', async () => {
       const res = await request(app).get('/trigger/covid');
       expect(res.statusCode).toEqual(200);
+      expect(res.body.type).toEqual('covid')
     });
   })
 
@@ -24,6 +21,7 @@ describe('Trigger Endpoint', () => {
     it('Should respond 200 if all messages are sent correctly', async () => {
       const res = await request(app).get('/trigger/vaccines');
       expect(res.statusCode).toEqual(200);
+      expect(res.body.type).toEqual('vaccines')
     });
   })
 
@@ -31,6 +29,7 @@ describe('Trigger Endpoint', () => {
     it('Should respond 200 if all messages are sent correctly', async () => {
       const res = await request(app).get('/trigger/anythingelse');
       expect(res.statusCode).toEqual(200);
+      expect(res.body.type).toEqual('generic')
     });
   })
 });

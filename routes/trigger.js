@@ -29,7 +29,7 @@ const getNotification = (type) => {
 
 /* GET trigger new covid notification. */
 router.get('/:id', async (req, res, next) => {
-  const notification = getNotification(req.query.id)
+  const notification = getNotification(req.params.id)
 
   let subscribers = [];
   try {
@@ -52,10 +52,16 @@ router.get('/:id', async (req, res, next) => {
 
   try {
     await Promise.all(sendNotsPromises);
-    res.send({ message: `Notification for ${ req.query.id } sent successfully to all subscribers!` });
+    res.send({
+      message: `Notification for ${ notification.triggerType } sent successfully to all subscribers!`,
+      type: notification.triggerType
+    });
   } catch (e) {
     console.log('Unable to send messages to all subscribers.');
-    res.status(500).send({message: 'Unable to send messages to all subscribers.'})
+    res.status(500).send({
+      message: 'Unable to send messages to all subscribers.',
+      type: notification.triggerType
+    })
   }
 });
 
