@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-const Subscription = require('../models/subscription').model;
+const express = require('express')
+const router = express.Router();
+const Subscription = require('../models/subscription');
 
 /* POST subscribe to notifications. */
 router.post('/', async (req, res, next) => {

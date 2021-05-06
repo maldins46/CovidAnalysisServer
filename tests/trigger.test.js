@@ -1,12 +1,12 @@
 const request = require('supertest')
-const dbHandler = require('./dbHandler');
+const mockDb = require('./helpers/mockdb');
 const app = require('../app')
 
-beforeAll(async () => await dbHandler.connect());
+beforeAll(async () => await mockDb.connect());
 
-afterEach(async () => await dbHandler.clearDatabase());
+afterEach(async () => await mockDb.clearDatabase());
 
-afterAll(async () => await dbHandler.closeDatabase());
+afterAll(async () => await mockDb.closeDatabase());
 
 describe('Trigger Endpoint', () => {
   describe('Covid Trigger endpoint', () => {

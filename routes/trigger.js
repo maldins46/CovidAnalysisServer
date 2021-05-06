@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const webpush = require('web-push');
-const Subscription = require('../models/subscription').model;
+const Subscription = require('../models/subscription');
 
 const getNotification = (type) => {
   switch (type) {
