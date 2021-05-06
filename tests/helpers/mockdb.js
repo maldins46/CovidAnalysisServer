@@ -1,7 +1,15 @@
+/*
+ * Copyright (c) 2021 Riccardo Maldini.
+ *
+ * This file is part of the CovidAnalysis project, and is distributed under the terms of
+ * the MIT License, as described in the file LICENSE in the repository's top directory.
+ *
+ */
+
 const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
-const mongod = new MongoMemoryServer();
 const Subscription = require('../../models/subscription');
+const mongod = new MongoMemoryServer();
 
 module.exports.connect = async () => {
   const uri = await mongod.getUri();
