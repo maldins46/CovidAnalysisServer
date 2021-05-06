@@ -13,10 +13,9 @@ const tryConnect = async () => {
     await mongoose.connect(uri, {
       useNewUrlParser: true,
       useFindAndModify: false,
-      useUnifiedTopology: true,
-      connectTimeoutMS: 30,
+      useUnifiedTopology: true
     });
-    console.log(`MongoDB successfully connected to ${encodeURI(process.env.MONGO_URL)}!`);
+    console.log(`MongoDB successfully connected!`);
 
   } catch(e) {
     console.error('Error connecting to mongoDB! ', e);
