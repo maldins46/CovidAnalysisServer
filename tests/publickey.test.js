@@ -13,7 +13,7 @@ describe('Public key Endpoint', () => {
   it('Should respond 200', async () => {
     const res = await request(app).get('/publickey');
     expect(res.statusCode).toEqual(200);
-    expect(res.body).toEqual({ publicKey: process.env.PUBLIC_KEY ??= 'Hey I\'m a key!' });
+    expect(res.body).toEqual({ publicKey: process.env.PUBLIC_KEY === undefined ? 'Hey I\'m a key!' : process.env.PUBLIC_KEY });
   });
 });
 

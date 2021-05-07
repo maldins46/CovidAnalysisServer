@@ -11,7 +11,7 @@ const router = express.Router();
 
 /* POST subscribe to notifications. */
 router.get('/', async (req, res, next) => {
-  const publicKey = process.env.PUBLIC_KEY ??= 'Hey I\'m a key!';
+  const publicKey = process.env.PUBLIC_KEY === undefined ? 'Hey I\'m a key!' : process.env.PUBLIC_KEY;
   res.send({ publicKey: publicKey });
 });
 
