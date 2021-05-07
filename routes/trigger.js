@@ -16,20 +16,26 @@ const getNotification = (type) => {
     case 'covid':
       return {
         triggerType: 'covid',
-        title: 'Dati sui contagi aggiornati!',
-        body: 'I grafici sui contagi sono stati appena aggiornati! Consultali subito dall\'app.'
+        notification: {
+          title: 'Dati sui contagi aggiornati!',
+          body: 'I grafici sui contagi sono stati appena aggiornati! Consultali subito dall\'app.'
+        }
       };
     case 'vaccines':
       return {
         triggerType: 'vaccines',
-        title: 'Dati sui vaccini aggiornati!',
-        body: 'I grafici sui vaccini sono stati appena aggiornati! Consultali subito dall\'app.'
+        notification: {
+          title: 'Dati sui vaccini aggiornati!',
+          body: 'I grafici sui vaccini sono stati appena aggiornati! Consultali subito dall\'app.'
+        }
       }
     default:
       return {
         triggerType: 'generic',
-        title: 'Dati aggiornati!',
-        body: 'I grafici sono stati appena aggiornati! Consultali subito dall\'app.'
+        notification: {
+          title: 'Dati aggiornati!',
+          body: 'I grafici sono stati appena aggiornati! Consultali subito dall\'app.'
+        }
       }
   }
 }
