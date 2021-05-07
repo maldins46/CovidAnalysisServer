@@ -16,6 +16,7 @@ require('dotenv').config()
 const indexRouter = require('./routes/index');
 const subscribeRouter = require('./routes/subscribe');
 const triggerRouter = require('./routes/trigger');
+const publickeyRouter = require('./routes/publickey');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/subscribe', subscribeRouter);
 app.use('/trigger', triggerRouter);
+app.use('/publickey', publickeyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
