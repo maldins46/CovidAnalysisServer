@@ -18,7 +18,17 @@ const getNotification = (type) => {
         triggerType: 'covid',
         notification: {
           title: 'Dati sui contagi aggiornati!',
-          body: 'I grafici sui contagi sono stati appena aggiornati! Consultali subito dall\'app.'
+          lang: 'it',
+          icon: 'https://covid-analysis-server.herokuapp.com/images/default-icon.png',
+          badge: 'https://covid-analysis-server.herokuapp.com/images/badge.png',
+          body: 'I grafici sull\'andamento contagi sono appena stati aggiornati! Consultali subito su CovidAnalysis.',
+          timestamp: Date.now().toString(),
+          actions: [
+            {
+              action: 'covid-action',
+              title: 'Vai al sito',
+            }
+          ]
         }
       };
     case 'vaccines':
@@ -26,7 +36,17 @@ const getNotification = (type) => {
         triggerType: 'vaccines',
         notification: {
           title: 'Dati sui vaccini aggiornati!',
-          body: 'I grafici sui vaccini sono stati appena aggiornati! Consultali subito dall\'app.'
+          lang: 'it',
+          badge: 'https://covid-analysis-server.herokuapp.com/images/badge.png',
+          icon: 'https://covid-analysis-server.herokuapp.com/images/vaccines-icon.png',
+          body: 'I grafici sui vaccini sono appena stati aggiornati! Consultali subito su CovidAnalisys.',
+          timestamp: Date.now().toString(),
+          actions: [
+            {
+              action: 'vaccines-action',
+              title: 'Vai al sito',
+            }
+          ]
         }
       }
     default:
@@ -34,7 +54,17 @@ const getNotification = (type) => {
         triggerType: 'generic',
         notification: {
           title: 'Dati aggiornati!',
-          body: 'I grafici sono stati appena aggiornati! Consultali subito dall\'app.'
+          lang: 'it',
+          icon: 'https://covid-analysis-server.herokuapp.com/images/default-icon.png',
+          badge: 'https://covid-analysis-server.herokuapp.com/images/badge.png',
+          body: 'I grafici sono stati appena stati aggiornati! Consultali subito su CovidAnalysis.',
+          timestamp: Date.now().toString(),
+          actions: [
+            {
+              action: 'covid-action',
+              title: 'Vai al sito',
+            }
+          ]
         }
       }
   }
