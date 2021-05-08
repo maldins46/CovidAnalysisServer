@@ -22,6 +22,7 @@ const corsOptions = {
 
 const indexRouter = require('./routes/index');
 const subscribeRouter = require('./routes/subscribe');
+const unsubscribeRouter = require('./routes/unsubscribe');
 const triggerRouter = require('./routes/trigger');
 const publickeyRouter = require('./routes/publickey');
 
@@ -37,14 +38,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-  origin: 'https://maldins46.github.io/CovidAnalysis',
+  origin: process.env.ENV === 'production' ? 'https://maldins46.github.io/CovidAnalysis' : 'http://localhost:8080',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }));
 
 app.use('/', indexRouter);
 app.use('/subscribe', subscribeRouter);
+app.use('/unsubscribe', unsubscribeRouter);
 app.use('/trigger', triggerRouter);
 app.use('/publickey', publickeyRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

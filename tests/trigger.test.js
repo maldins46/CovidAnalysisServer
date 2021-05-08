@@ -11,9 +11,7 @@ const mockDb = require('./helpers/mockdb');
 const app = require('../app')
 
 beforeAll(async () => await mockDb.connect());
-
 afterEach(async () => await mockDb.clearDatabase());
-
 afterAll(async () => await mockDb.closeDatabase());
 
 describe('Trigger Endpoint', () => {

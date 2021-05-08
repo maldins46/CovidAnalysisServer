@@ -50,7 +50,7 @@ router.get('/:id', async (req, res, next) => {
     subscribers = await Subscription.find();
   } catch (e) {
     console.log("Error fetching subscribers.");
-    res.status(500).send({message: 'Error fetching subscribers.'});
+    res.status(500).send({ message: 'Error fetching subscribers.' });
     return;
   }
 
