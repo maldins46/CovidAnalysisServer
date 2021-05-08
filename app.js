@@ -11,7 +11,14 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+const cors = require('cors')
+
 require('dotenv').config()
+
+const corsOptions = {
+  origin: 'https://maldins46.github.io/CovidAnalysis',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 const indexRouter = require('./routes/index');
 const subscribeRouter = require('./routes/subscribe');
@@ -29,6 +36,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors({
+  origin: 'https://maldins46.github.io/CovidAnalysis',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}));
 
 app.use('/', indexRouter);
 app.use('/subscribe', subscribeRouter);
@@ -42,9 +53,9 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  res.locals.message = process.env.ENV === 'development' ? err.message : "Oh no! An error occurred!";
+  const errorCode = err.status || 500;
+  res.locals.message = process.env.ENV === 'development' ? err.message : `Oh no! Error ${errorCode}!`;
   res.locals.error = process.env.ENV === 'development' ? err : {};
-  errorCode = err.status || 500;
 
   // render the error page
   res.status(errorCode);

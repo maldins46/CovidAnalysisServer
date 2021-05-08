@@ -17,7 +17,7 @@ module.exports.connect = async () => {
 const tryConnect = async () => {
   try {
     const uri = encodeURI(process.env.MONGO_URL);
-    console.log(`Connecting to MongoDB at ${uri}...`)
+    console.log(`Connecting to MongoDB...`)
     await mongoose.connect(uri, {
       useNewUrlParser: true,
       useFindAndModify: false,
