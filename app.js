@@ -38,7 +38,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-  origin: process.env.ENV === 'production' ? 'https://maldins46.github.io/CovidAnalysis' : 'http://localhost:8080',
+  origin: process.env.ENV === 'production' ? 'https://maldins46.github.io' : 'http://localhost:8080',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }));
 
