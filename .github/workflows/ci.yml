@@ -29,7 +29,12 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
       env:
+        ENV: development
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
-        ENV: development
-
+        TRIGGERS_USERNAME: ${{ secrets.TRIGGERS_USERNAME }}
+        TRIGGERS_PASSWORD: ${{ secrets.TRIGGERS_PASSWORD }}
+        SERVER_URL: ${{ secrets.SERVER_URL }}
+        CLIENT_URL: ${{ secrets.CLIENT_URL }}
+        SERVER_DEV_URL: ${{ secrets.SERVER_DEV_URL }}
+        CLIENT_DEV_URL: ${{ secrets.CLIENT_DEV_URL }}
