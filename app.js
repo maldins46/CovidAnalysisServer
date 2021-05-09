@@ -12,19 +12,14 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
-
 require('dotenv').config()
-
-const corsOptions = {
-  origin: 'https://maldins46.github.io/CovidAnalysis',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
 
 const indexRouter = require('./routes/index');
 const subscribeRouter = require('./routes/subscribe');
 const unsubscribeRouter = require('./routes/unsubscribe');
 const triggerRouter = require('./routes/trigger');
 const publickeyRouter = require('./routes/publickey');
+const basicAuth = require('express-basic-auth');
 
 const app = express();
 
@@ -38,14 +33,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-  origin: process.env.ENV === 'production' ? 'https://maldins46.github.io' : 'http://localhost:8080',
+  origin: process.env.ENV === 'production' ? process.env.CLIENT_URL :  process.env.CLIENT_DEV_URL,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }));
 
 app.use('/', indexRouter);
 app.use('/subscribe', subscribeRouter);
 app.use('/unsubscribe', unsubscribeRouter);
-app.use('/trigger', triggerRouter);
+app.use('/trigger', basicAuth({ users: {[process.env.TRIGGERS_USERNAME] : process.env.TRIGGERS_PASSWORD }}), triggerRouter);
 app.use('/publickey', publickeyRouter);
 
 
