@@ -30,7 +30,7 @@
     "web-push": "^3.4.4"
   },
   "devDependencies": {
-    "jest": "^26.6.3",
+    "jest": "^30.5.2",
     "mongodb-memory-server": "^6.9.6",
     "supertest": "^6.1.3"
   }
